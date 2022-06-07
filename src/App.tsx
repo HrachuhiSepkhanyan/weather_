@@ -13,7 +13,7 @@ const App: React.FunctionComponent = () => {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/weather" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/weather/:city/:day" element={<Weather />} />
         <Route path="/favoritecity" element={<CityForm />} />
       </Routes>

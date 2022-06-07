@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+const Container = styled.div`
   background-color: none;
 `;
-export const Input = styled.input`
+const Input = styled.input`
   text-transform: capitalize;
   border: none;
   border-bottom: 1px solid #000;
@@ -12,13 +12,13 @@ export const Input = styled.input`
   padding: 0 10px;
 `;
 
-export const Form = styled.form`
+const Form = styled.form`
   width: 100%;
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
 `;
-export const Add = styled.button`
+const Add = styled.button`
   border: none;
   padding: 10px;
   background-color: #f4a460;
@@ -28,10 +28,10 @@ export const Add = styled.button`
   outline: none;
 `;
 
-export const CityFom = styled.div`
+const CityFom = styled.div`
   padding: 20px;
 `;
-export const CardCity = styled.div`
+const CardCity = styled.div`
   width: 32%;
   display: flex;
   min-height: 100px;
@@ -56,6 +56,16 @@ export const CardCity = styled.div`
     transition: transform 0.2s linear;
   }
 `;
-export const AllFavoriteCity = styled.div`
+const AllFavoriteCity = styled.div`
   display: flex;
 `;
+
+export const Style = {
+  AllFavoriteCity,
+  CardCity,
+  CityFom,
+  Add,
+  Form,
+  Input,
+  Container,
+};

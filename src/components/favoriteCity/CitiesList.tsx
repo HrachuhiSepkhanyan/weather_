@@ -3,7 +3,7 @@ import { ICity } from "../../interfaces";
 import del from "../../images/delete.svg";
 import { NavLink } from "react-router-dom";
 
-import { CardCity, AllFavoriteCity } from "./CitiesList.styled";
+import { Style } from "./CitiesList.styled";
 
 type CityListProps = {
   cities: ICity[];
@@ -16,18 +16,18 @@ export const CityList: React.FC<CityListProps> = ({ cities }) => {
       to="/weather"
       style={{ textDecoration: "none", color: "black" }}
     >
-      <AllFavoriteCity>
+      <Style.AllFavoriteCity>
         {cities.map((i: any) => {
           return (
-            <CardCity key={Math.random()}>
+            <Style.CardCity key={Math.random()}>
               {i.name}
               <button>
                 <img src={del} alt="delete"></img>
               </button>
-            </CardCity>
+            </Style.CardCity>
           );
         })}
-      </AllFavoriteCity>
+      </Style.AllFavoriteCity>
     </NavLink>
   );
 };

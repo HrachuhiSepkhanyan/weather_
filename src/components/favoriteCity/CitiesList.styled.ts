@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CardCity = styled.div`
+const CardCity = styled.div`
   width: 32%;
   display: flex;
   min-height: 100px;
@@ -30,6 +30,10 @@ export const CardCity = styled.div`
     transition: transform 0.2s linear;
   }
 `;
-export const AllFavoriteCity = styled.div`
+const AllFavoriteCity = styled.div`
   display: flex;
 `;
+export const Style = {
+  CardCity,
+  AllFavoriteCity,
+};

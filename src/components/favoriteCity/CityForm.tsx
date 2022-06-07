@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import cities from "cities.json";
 import { IItemProps } from "../../interfaces";
 import useGeoLocation from "../../useGeoLocation";
-import { API_KEY } from "../../API/forecastAPI";
-import { Container, CityFom, Input, Form, Add } from "./CityForm.styles";
+import { API_KEY } from "../../API/API";
+import { Style } from "./CityForm.styles";
 import { CityList } from "./CitiesList";
 import { ICity } from "../../interfaces";
 
@@ -62,21 +62,21 @@ const CityForm: React.FunctionComponent<any> = () => {
   }, [favoriteCityName]);
 
   return (
-    <Container>
-      <CityFom>
-        <Form>
-          <Input
+    <Style.Container>
+      <Style.CityFom>
+        <Style.Form>
+          <Style.Input
             value={inputValue}
             type="text"
             placeholder="Add favorite city"
             id="name"
             onChange={(e) => setInputValue(e.target.value)}
           />
-          <Add onClick={(e) => addCity(e)}>Add City +</Add>
-        </Form>
-      </CityFom>
+          <Style.Add onClick={(e) => addCity(e)}>Add City +</Style.Add>
+        </Style.Form>
+      </Style.CityFom>
       <CityList cities={city} />
-    </Container>
+    </Style.Container>
   );
 };
 

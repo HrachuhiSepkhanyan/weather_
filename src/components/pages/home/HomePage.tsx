@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import useGeoLocation from "../../../useGeoLocation";
 import { Style } from "./City.style";
 import Weather from "../../weather/Weather";
-import { API_URL, API_KEY } from "../../../API/forecastAPI";
+import { API_URL, API_KEY } from "../../../API/API";
 import Footer from "../../footer/Footer";
 
 const t = new Date();
@@ -16,10 +16,11 @@ const Home: React.FunctionComponent = () => {
   const [data, setData] = useState<any>();
   const lat = JSON.stringify(location?.coordinates?.lat);
   const lon = JSON.stringify(location?.coordinates?.lon);
+  console.log(lat);
 
   useEffect(() => {
     if (lat && lon) {
-      fetch(`${API_URL}${lat}&lon=${lon}&appid=${API_KEY}`)
+      fetch(`${API_URL}forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`)
         .then((response) => response.json())
         .then((results) => {
           setData(results);

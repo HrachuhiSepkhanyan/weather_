@@ -1,6 +1,7 @@
 import React from "react";
-import { Style } from "../pages/home/City.style";
+import { Style } from "./Footer.style";
 import { NavLink, Outlet } from "react-router-dom";
+import { API_ICON_ULR } from "../../API/API";
 
 const Footer: React.FunctionComponent<any> = ({ data }) => {
   return (
@@ -20,12 +21,13 @@ const Footer: React.FunctionComponent<any> = ({ data }) => {
                 <div>{i.dt_txt.slice(5, 10)}</div>
                 <div>
                   <div>
-                    {Math.ceil((i.main.temp - 273.15) * 9) / 5 + 32 + "°F"}
+                    <img
+                      alt=""
+                      src={`${API_ICON_ULR}${i?.weather?.[0]?.icon}@2x.png`}
+                    />
                   </div>
                   <div>
-                    <div>
-                      <img src="" alt="" />
-                    </div>
+                    {Math.ceil((i.main.temp - 273.15) * 9) / 5 + 32 + "°F"}
                   </div>
                 </div>
               </Style.CardDay>

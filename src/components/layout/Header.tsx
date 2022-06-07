@@ -1,12 +1,12 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { HeaderContainer } from "./header.styled";
+import { Style } from "./header.styled";
 
 const Header: React.FunctionComponent = () => {
   return (
-    <HeaderContainer>
+    <Style.HeaderContainer>
       <div>
-        <NavLink to="/weather">Home</NavLink>
+        <NavLink to="/">Home</NavLink>
         <NavLink to="/favoritecity">Favorite City</NavLink>
       </div>
 
@@ -17,7 +17,7 @@ const Header: React.FunctionComponent = () => {
         <label>°F</label>
       </button>
       <Outlet />
-    </HeaderContainer>
+    </Style.HeaderContainer>
   );
 };
 export default Header;

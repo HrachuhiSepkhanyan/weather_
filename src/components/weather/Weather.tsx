@@ -1,5 +1,6 @@
 import React from "react";
-import { Style } from "../pages/home/City.style";
+import { Style } from "./Weather.style";
+import { API_ICON_ULR } from "../../API/API";
 
 const Weather: React.FunctionComponent<any> = ({ data, day }) => {
   const currentCityName = data?.city?.name;
@@ -11,7 +12,10 @@ const Weather: React.FunctionComponent<any> = ({ data, day }) => {
         <h1>
           {Math.ceil(((data?.list?.[0]?.main?.temp - 273) * 9) / 5 + 32) + "°F"}
         </h1>
-        <Style.CardDayIcon></Style.CardDayIcon>
+        <img
+          alt=""
+          src={`${API_ICON_ULR}${data?.list?.[0]?.weather?.[0]?.icon}@2x.png`}
+        />
         <h4>{data?.list?.[0]?.weather?.[0]?.main}</h4>
       </Style.CurrentCard>
       <Style.WeatherHour>
@@ -27,7 +31,10 @@ const Weather: React.FunctionComponent<any> = ({ data, day }) => {
                   {Math.ceil((item.main.temp - 273.15) * 9) / 5 + 32 + "°F"}
                 </div>
                 <div>
-                  <img alt="" />
+                  <img
+                    alt=""
+                    src={`${API_ICON_ULR}${item?.weather?.[0]?.icon}@2x.png`}
+                  />
                 </div>
               </Style.WeatherHourItem>
             );
