@@ -15,7 +15,7 @@ const Footer: React.FunctionComponent<any> = ({ data }) => {
             <NavLink
               key={Math.random()}
               style={{ textDecoration: "none", color: "inherit" }}
-              to={`${data?.city?.name}/${i.dt_txt.slice(9, 10)}`}
+              to={`${data?.city?.name}/${i.dt_txt.slice(0, 10)}`}
             >
               <Style.CardDay>
                 <div>{i.dt_txt.slice(5, 10)}</div>

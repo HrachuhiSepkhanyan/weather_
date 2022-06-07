@@ -1,12 +1,22 @@
 import React from "react";
 import { Style } from "./Weather.style";
 import { API_ICON_ULR } from "../../API/API";
+import { useParams } from "react-router-dom";
 
 const Weather: React.FunctionComponent<any> = ({ data, day }) => {
+  const { city, date } = useParams();
   const currentCityName = data?.city?.name;
-  console.log(currentCityName);
+
+  const result = data?.list?.filter((item: any) => {
+    return item.dt_txt.includes(date);
+  });
+  console.log(result);
+
   return (
     <Style.Content>
+      <h1>{city}</h1>
+      <h1>{date}</h1>
+
       <Style.CurrentCard>
         <h3>{currentCityName}</h3>
         <h1>

@@ -16,7 +16,6 @@ const Home: React.FunctionComponent = () => {
   const [data, setData] = useState<any>();
   const lat = JSON.stringify(location?.coordinates?.lat);
   const lon = JSON.stringify(location?.coordinates?.lon);
-  console.log(lat);
 
   useEffect(() => {
     if (lat && lon) {
