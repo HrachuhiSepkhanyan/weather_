@@ -22,10 +22,7 @@ const CardDay = styled.div`
     background-color: none;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
   }
-  & > div :active {
-    background-color: none;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-  }
+  
 `;
 
 const CardDayContainer = styled.div`

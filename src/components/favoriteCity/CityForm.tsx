@@ -32,10 +32,10 @@ const CityForm: React.FunctionComponent<any> = () => {
   };
   const addCity = (event: React.MouseEvent) => {
     event.preventDefault();
-    localStorage.setItem("city", JSON.stringify(city));
 
     if (objectCity) {
       add(inputValue);
+      localStorage.setItem("city", JSON.stringify(city));
       setInputValue("");
       return storage;
     }
