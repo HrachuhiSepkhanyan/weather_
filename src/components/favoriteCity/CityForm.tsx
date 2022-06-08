@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import cities from "cities.json";
-import { IItemProps } from "../../interfaces";
 import useGeoLocation from "../../useGeoLocation";
 import { API_KEY } from "../../API/API";
 import { Style } from "./CityForm.styles";
@@ -24,7 +23,6 @@ const CityForm: React.FunctionComponent<any> = () => {
   let storage = localStorage.getItem("city");
   const add = (name: string) => {
     const newCity: ICity = {
-      id: Math.random(),
       name: name,
     };
 
@@ -44,7 +42,7 @@ const CityForm: React.FunctionComponent<any> = () => {
       alert("City is not defined");
     };
   };
-  const objectCity: any = cities.find(function (item: IItemProps) {
+  const objectCity: any = (cities as ICity[]).find((item: ICity) => {
     return item.name === inputValue;
   });
   const name = () => {
