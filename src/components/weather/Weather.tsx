@@ -17,6 +17,8 @@ const Weather: React.FunctionComponent<any> = () => {
   const location = useGeoLocation();
   const [data, setData] = useState<any>();
   const lat = JSON.stringify(location?.coordinates?.lat);
+  // let celsius = Math.round(parseFloat(item.main.temp) - 273.15);
+  // let fahrenheit = Math.round((parseFloat(item.main.temp) - 273.15) * 1.8 + 32);
   const lon = JSON.stringify(location?.coordinates?.lon);
 
   useEffect(() => {
@@ -37,9 +39,7 @@ const Weather: React.FunctionComponent<any> = () => {
     <Style.Content>
       <Style.CurrentCard>
         <h3>{data?.city?.name}</h3>
-        <h1>
-          {Math.ceil(((data?.list?.[0]?.main?.temp - 273) * 9) / 5 + 32) + "°F"}
-        </h1>
+        <h1>{Math.ceil(data?.list?.[0]?.main?.temp - 273.15) + "°C"}</h1>
         <img
           alt=""
           src={`${API_ICON_ULR}${data?.list?.[0]?.weather?.[0]?.icon}@2x.png`}
@@ -49,14 +49,14 @@ const Weather: React.FunctionComponent<any> = () => {
       <Style.WeatherHour>
         {data?.list
           ?.filter((item: any) => {
-            return item.dt_txt.includes(today);
+            return item.dt_txt.includes(date);
           })
           .map((item: any) => {
             return (
               <Style.WeatherHourItem key={Math.random()}>
                 <div>{item.dt_txt.slice(10, 16)}</div>
                 <div>
-                  {Math.ceil((item.main.temp - 273.15) * 9) / 5 + 32 + "°F"}
+                  {Math.round(parseFloat(item.main.temp) - 273.15) + "°C"}
                 </div>
                 <div>
                   <img

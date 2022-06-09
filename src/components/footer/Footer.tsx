@@ -26,9 +26,7 @@ const Footer: React.FunctionComponent<any> = ({ data }) => {
                       src={`${API_ICON_ULR}${i?.weather?.[0]?.icon}@2x.png`}
                     />
                   </div>
-                  <div>
-                    {Math.ceil((i.main.temp - 273.15) * 9) / 5 + 32 + "°F"}
-                  </div>
+                  <div>{Math.ceil(i.main.temp - 273.15) + "°C"}</div>
                 </div>
               </Style.CardDay>
             </NavLink>

@@ -2,7 +2,6 @@ import React from "react";
 import { ICity } from "../../interfaces";
 import del from "../../images/delete.svg";
 import { NavLink } from "react-router-dom";
-
 import { Style } from "./CitiesList.styled";
 
 type CityListProps = {
@@ -13,7 +12,7 @@ export const CityList: React.FC<CityListProps> = ({ cities }) => {
   return (
     <NavLink
       key={Math.random()}
-      to="/weather"
+      to=""
       style={{ textDecoration: "none", color: "black" }}
     >
       <Style.AllFavoriteCity>
