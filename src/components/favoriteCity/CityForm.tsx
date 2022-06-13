@@ -12,42 +12,39 @@ const API_URL = "https://api.openweathermap.org/data/2.5/forecast?q=";
 const CityForm: React.FunctionComponent<any> = () => {
   const currentCity = useGeoLocation();
   const [city, setCity] = useState<ICity[]>([]);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState<string>("");
+
   const [data, setData] = useState<any>();
 
   const latCurrentCity = JSON.stringify(currentCity?.coordinates?.lat);
   const lonCurrentCity = JSON.stringify(currentCity?.coordinates?.lon);
-  console.log(data);
   console.log(latCurrentCity);
   console.log(lonCurrentCity);
 
-  const add = (name: string) => {
+  const add = (name: string): void => {
     const newCity: ICity = {
       name: name,
     };
-
+    localStorage.setItem("city", JSON.stringify(city));
     setCity((state: any) => [...state, newCity]);
   };
-  // let storage: IStorage[] = localStorage.getItem("city");
-  // console.log(storage);
-
-  let storage = localStorage.getItem("city");
   const addCity = (event: React.MouseEvent) => {
     event.preventDefault();
 
     if (objectCity) {
       add(inputValue);
-      localStorage.setItem("city", JSON.stringify(city));
       setInputValue("");
-      return storage;
+      return localStorage;
     }
     alert("City is not defined");
   };
+
   const objectCity: any = (cities as ICity[]).find((item: ICity) => {
     return item.name === inputValue;
   });
+
   const name = () => {
-    if (objectCity) {
+    if (objectCity !== undefined) {
       return objectCity.name;
     }
   };
@@ -55,10 +52,16 @@ const CityForm: React.FunctionComponent<any> = () => {
   console.log(favoriteCityName);
 
   useEffect(() => {
-    fetch(`${API_URL}${favoriteCityName}&appid=${API_KEY}`)
-      .then((stream) => stream.json())
-      .then((results) => setData(results));
+    const handle = setTimeout(() => {
+      fetch(`${API_URL}${favoriteCityName}&appid=${API_KEY}`)
+        .then((stream) => stream.json())
+        .then((results) => setData(results));
+    }, 1000);
+    return () => {
+      clearTimeout(handle);
+    };
   }, [favoriteCityName]);
+  console.log(data);
 
   return (
     <Style.Container>
@@ -74,16 +77,9 @@ const CityForm: React.FunctionComponent<any> = () => {
           <Style.Add onClick={(e) => addCity(e)}>Add City +</Style.Add>
         </Style.Form>
       </Style.CityFom>
-      {/* <Style.AllFavoriteCity> */}
-      {/* {storage.map((i: any) => {
-          return (
-            <Style.CardCity key={Math.random()}>
-              {i.name}
-              <button>
-                <img src={del} alt="delete"></img>
-              </button>
-            </Style.CardCity>
-          );
+      {/* <Style.AllFavoriteCity>
+        {storage.map((i: any) => {
+          return <Style.CardCity key={Math.random()}>{i.name}</Style.CardCity>;
         })}
       </Style.AllFavoriteCity> */}
 

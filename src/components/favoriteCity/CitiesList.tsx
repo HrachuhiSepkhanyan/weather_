@@ -20,7 +20,7 @@ export const CityList: React.FC<CityListProps> = ({ cities }) => {
           return (
             <Style.CardCity key={Math.random()}>
               {i.name}
-              <button>
+              <button onClick={() => {}}>
                 <img src={del} alt="delete"></img>
               </button>
             </Style.CardCity>
