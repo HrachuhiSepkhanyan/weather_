@@ -1,22 +1,14 @@
-import { createStore } from "redux";
-import { API_URL, API_KEY } from "../API/API";
-const store = createStore(
-  function (state: any, action: any) {
-    if (action.type === "change-Data") {
-      return {
-        ...state,
-        data: {
-          name: action.payload.name,
-        },
-      };
-    }
-    return state;
-  },
-  {
-    data: {
-      name: "Hrachuhi",
-    },
-  }
-);
+import { configureStore,combineReducers } from "@reduxjs/toolkit";
+  export const rootReducer =combineReducers(
+    reducers:{
 
-export default store;
+ })
+
+ export const store=configureStore(options:{
+    reducer : rootReducer,
+ })
+
+
+ export type RootState=ReturnType<typeof rootReducer>
+ export type AppStore=typeof store
+ export type AppDispatch=AppStore["dispatch"]

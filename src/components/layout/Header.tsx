@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { Style } from "./header.styled";
+import Temp from "./Temp";
 
 const Header: React.FunctionComponent = () => {
   return (
@@ -10,12 +11,7 @@ const Header: React.FunctionComponent = () => {
         <NavLink to="/favoritecity">Favorite City</NavLink>
       </div>
 
-      <button>
-        <input type="radio"></input>
-        <label>°C</label>
-        <input type="radio"></input>
-        <label>°F</label>
-      </button>
+      <Temp />
       <Outlet />
     </Style.HeaderContainer>
   );

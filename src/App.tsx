@@ -14,7 +14,7 @@ const App: React.FunctionComponent = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/:city/:date" element={<Weather />} />
+        <Route path="/:weather/:city/:date" element={<Weather />} />
         <Route path="/favoritecity" element={<CityForm />} />
       </Routes>
     </div>

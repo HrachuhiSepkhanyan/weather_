@@ -7,26 +7,31 @@ import { Style } from "./CitiesList.styled";
 type CityListProps = {
   cities: ICity[];
 };
-
+const t = new Date();
+const dd = String(t.getDate()).padStart(2, "0");
+const mm = String(t.getMonth() + 1).padStart(2, "0");
+const yyyy = t.getFullYear();
+const today = String(yyyy + "-" + mm + "-" + dd);
 export const CityList: React.FC<CityListProps> = ({ cities }) => {
   return (
-    <NavLink
-      key={Math.random()}
-      to=""
-      style={{ textDecoration: "none", color: "black" }}
-    >
-      <Style.AllFavoriteCity>
-        {cities.map((i: any) => {
-          return (
-            <Style.CardCity key={Math.random()}>
+    <Style.AllFavoriteCity>
+      {cities.map((i: any) => {
+        const name = i.name;
+        return (
+          <Style.CardCity key={Math.random()}>
+            <NavLink
+              to={`/weather/city=${name}/date=${today}`}
+              key={Math.random()}
+              style={{ textDecoration: "none", color: "black" }}
+            >
               {i.name}
-              <button onClick={() => {}}>
-                <img src={del} alt="delete"></img>
-              </button>
-            </Style.CardCity>
-          );
-        })}
-      </Style.AllFavoriteCity>
-    </NavLink>
+            </NavLink>
+            <button>
+              <img src={del} alt="delete"></img>
+            </button>
+          </Style.CardCity>
+        );
+      })}
+    </Style.AllFavoriteCity>
   );
 };

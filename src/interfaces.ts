@@ -15,3 +15,10 @@ export interface CityListProps {
 export interface IStorage {
   name: string | null;
 }
+export interface ICityState {
+  names: string[];
+}
+export interface ILocation {
+  lat: string;
+  lon: string;
+}

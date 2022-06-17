@@ -5,7 +5,6 @@ import { API_KEY } from "../../API/API";
 import { Style } from "./CityForm.styles";
 import { CityList } from "./CitiesList";
 import { ICity } from "../../interfaces";
-// import del from "../../images/delete.svg";
 
 const API_URL = "https://api.openweathermap.org/data/2.5/forecast?q=";
 
@@ -13,7 +12,6 @@ const CityForm: React.FunctionComponent<any> = () => {
   const currentCity = useGeoLocation();
   const [city, setCity] = useState<ICity[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
-
   const [data, setData] = useState<any>();
 
   const latCurrentCity = JSON.stringify(currentCity?.coordinates?.lat);
@@ -25,12 +23,11 @@ const CityForm: React.FunctionComponent<any> = () => {
     const newCity: ICity = {
       name: name,
     };
-    localStorage.setItem("city", JSON.stringify(city));
     setCity((state: any) => [...state, newCity]);
   };
-  const addCity = (event: React.MouseEvent) => {
-    event.preventDefault();
 
+  const addCity = (event: any) => {
+    event.preventDefault();
     if (objectCity) {
       add(inputValue);
       setInputValue("");
@@ -77,11 +74,6 @@ const CityForm: React.FunctionComponent<any> = () => {
           <Style.Add onClick={(e) => addCity(e)}>Add City +</Style.Add>
         </Style.Form>
       </Style.CityFom>
-      {/* <Style.AllFavoriteCity>
-        {storage.map((i: any) => {
-          return <Style.CardCity key={Math.random()}>{i.name}</Style.CardCity>;
-        })}
-      </Style.AllFavoriteCity> */}
 
       <CityList cities={city} />
     </Style.Container>
