@@ -24,7 +24,7 @@ const WeatherHour = styled.div`
 `;
 const WeatherHourItem = styled.div`
   width: 50%;
-  height: 50px;
+  height: 30px;
   display: flex;
   align-items: center;
   margin: 15px;
@@ -32,6 +32,10 @@ const WeatherHourItem = styled.div`
   border-bottom: 1px solid #ccc;
   & > div {
     margin: 3px;
+  }
+  & > div > img {
+    width: 70px !important;
+    height: 70px !important;
   }
 `;
 const CardDay = styled.div`

@@ -6,7 +6,6 @@ import useGeoLocation from "../../useGeoLocation";
 import { API_URL, API_KEY } from "../../API/API";
 import Footer from "../footer/Footer";
 import { ILocation } from "../../interfaces";
-import { useSearchParams } from "react-router-dom";
 import { WeatherApi } from "../../API/API";
 import { UnitContext } from "../context/unit";
 import { getFormattedTemp } from "../../helpers/index";
@@ -21,6 +20,7 @@ const Weather: React.FunctionComponent<any> = () => {
   const { date } = useParams();
   const { city } = useParams();
   const { unit } = useContext(UnitContext);
+  console.log(unit);
   const location = useGeoLocation();
   const [coords, setCoords] = useState<ILocation>();
   const [data, setData] = useState<any>();
@@ -28,9 +28,6 @@ const Weather: React.FunctionComponent<any> = () => {
   const lat = JSON.stringify(location?.coordinates?.lat);
   const lon = JSON.stringify(location?.coordinates?.lon);
 
-  const [searchParams] = useSearchParams();
-  const day = searchParams.get("day");
-  console.log(day);
   useEffect(() => {
     if (!city) {
       setCoords({
@@ -68,6 +65,7 @@ const Weather: React.FunctionComponent<any> = () => {
           })
           .map((item: any) => {
             const temp = getFormattedTemp(unit, item.main.temp);
+            console.log(unit);
             return (
               <Style.WeatherHourItem key={Math.random()}>
                 <div>{item.dt_txt.slice(10, 16)}</div>

@@ -14,9 +14,12 @@ const HeaderContainer = styled.div`
   & > div > a {
     color: white;
     text-decoration: none;
-    margin: 10px;
+    margin: 8px;
+  }
+  & > div > {
   }
   & > button {
+    height: 50px;
     position: absolute;
     right: 30px;
     background-color: #fff;

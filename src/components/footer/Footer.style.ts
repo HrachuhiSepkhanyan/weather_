@@ -27,7 +27,7 @@ const CardDay = styled.div`
 const CardDayContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 60px;
+  margin-top: 30px;
 `;
 const CardDayIcon = styled.img`
   width: 70px !important;

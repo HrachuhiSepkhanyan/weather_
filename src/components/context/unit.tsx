@@ -8,7 +8,6 @@ export interface IUnitContextValue {
 interface UnitProviderProps {
   children: React.ReactNode;
 }
-
 export const UnitContext = React.createContext<IUnitContextValue>({
   unit: "",
   setUnit: () => {},
@@ -16,6 +15,7 @@ export const UnitContext = React.createContext<IUnitContextValue>({
 
 export const UnitProvider = ({ children }: UnitProviderProps) => {
   const [unit, setUnit] = React.useState("C");
+
   return (
     <UnitContext.Provider value={{ unit, setUnit }}>
       {children}

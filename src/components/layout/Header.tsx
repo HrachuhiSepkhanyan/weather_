@@ -10,9 +10,7 @@ const Header: React.FunctionComponent = () => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/favoritecity">Favorite City</NavLink>
       </div>
-
-      <Temp />
-      <Outlet />
+      <Temp /> <Outlet />
     </Style.HeaderContainer>
   );
 };
