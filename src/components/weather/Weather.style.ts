@@ -18,7 +18,7 @@ const Content = styled.div`
 `;
 const WeatherHour = styled.div`
   width: 30%;
-  height: 30%;
+  height: 20%;
   display: flex;
   flex-direction: column;
 `;
@@ -27,7 +27,7 @@ const WeatherHourItem = styled.div`
   height: 30px;
   display: flex;
   align-items: center;
-  margin: 15px;
+  margin: 10px;
   justify-content: center;
   border-bottom: 1px solid #ccc;
   & > div {
