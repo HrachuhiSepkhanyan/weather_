@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Style } from "./Weather.style";
 import { API_ICON_ULR } from "../../API/API";
 import { useParams } from "react-router-dom";
@@ -7,6 +7,10 @@ import { API_URL, API_KEY } from "../../API/API";
 import Footer from "../footer/Footer";
 import { ILocation } from "../../interfaces";
 import { useSearchParams } from "react-router-dom";
+import { WeatherApi } from "../../API/API";
+import { UnitContext } from "../context/unit";
+import { getFormattedTemp } from "../../helpers/index";
+
 const t = new Date();
 const dd = String(t.getDate()).padStart(2, "0");
 const mm = String(t.getMonth() + 1).padStart(2, "0");
@@ -16,6 +20,7 @@ const today = String(yyyy + "-" + mm + "-" + dd);
 const Weather: React.FunctionComponent<any> = () => {
   const { date } = useParams();
   const { city } = useParams();
+  const { unit } = useContext(UnitContext);
   const location = useGeoLocation();
   const [coords, setCoords] = useState<ILocation>();
   const [data, setData] = useState<any>();
@@ -24,9 +29,8 @@ const Weather: React.FunctionComponent<any> = () => {
   const lon = JSON.stringify(location?.coordinates?.lon);
 
   const [searchParams] = useSearchParams();
-  // const city = searchParams.get("city");
   const day = searchParams.get("day");
-
+  console.log(day);
   useEffect(() => {
     if (!city) {
       setCoords({
@@ -63,12 +67,11 @@ const Weather: React.FunctionComponent<any> = () => {
             return item.dt_txt.includes(date);
           })
           .map((item: any) => {
+            const temp = getFormattedTemp(unit, item.main.temp);
             return (
               <Style.WeatherHourItem key={Math.random()}>
                 <div>{item.dt_txt.slice(10, 16)}</div>
-                <div>
-                  {Math.round(parseFloat(item.main.temp) - 273.15) + "°C"}
-                </div>
+                <div>{temp}</div>
                 <div>
                   <img
                     alt=""

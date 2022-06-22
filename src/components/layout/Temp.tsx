@@ -1,28 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import { Radio } from "@mui/material";
+import { useContext } from "react";
+import { UnitContext } from "../context/unit";
 
 const Temp = () => {
-  const [temp, setTemp] = useState("C");
-  const setTemperature = (temp: string) => () => {
-    setTemp(temp);
+  const { unit, setUnit } = useContext(UnitContext);
+
+  const setTemperatureUnit = (unit: string) => () => {
+    setUnit(unit);
   };
 
   return (
     <button>
       <Radio
-        checked={temp === "C"}
-        onChange={setTemperature("C")}
-        value="a"
+        checked={unit === "C"}
+        onClick={setTemperatureUnit("C")}
+        value="C"
         name="radio-buttons"
-        inputProps={{ "aria-label": "A" }}
+        inputProps={{ "aria-label": "C" }}
       />
       <label>°C</label>
       <Radio
-        checked={temp === "F"}
-        onChange={setTemperature("F")}
-        value="b"
+        checked={unit === "F"}
+        onChange={setTemperatureUnit("F")}
+        value="F"
         name="radio-buttons"
-        inputProps={{ "aria-label": "B" }}
+        inputProps={{ "aria-label": "F" }}
       />
       <label>°F</label>
     </button>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Style } from "./City.style";
+import { Style } from "./Home.style";
 import Weather from "../../weather/Weather";
 
 const Home: React.FunctionComponent = () => {

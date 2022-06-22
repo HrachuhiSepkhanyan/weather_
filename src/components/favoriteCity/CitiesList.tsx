@@ -12,11 +12,14 @@ const dd = String(t.getDate()).padStart(2, "0");
 const mm = String(t.getMonth() + 1).padStart(2, "0");
 const yyyy = t.getFullYear();
 const today = String(yyyy + "-" + mm + "-" + dd);
+
 export const CityList: React.FC<CityListProps> = ({ cities }) => {
   return (
     <Style.AllFavoriteCity>
       {cities.map((i: any) => {
         const name = i.name;
+        console.log(name);
+
         return (
           <Style.CardCity key={Math.random()}>
             <NavLink
