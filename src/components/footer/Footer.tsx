@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Style } from "./Footer.style";
 import { NavLink, Outlet } from "react-router-dom";
 import { API_ICON_ULR } from "../../API/API";
+import { getFormattedTemp } from "../../helpers";
+import { UnitContext } from "../context/unit";
 
 const Footer: React.FunctionComponent<any> = ({ data }) => {
+  const { unit } = useContext(UnitContext);
+
   return (
     <Style.CardDayContainer>
       {data?.list
@@ -11,6 +15,7 @@ const Footer: React.FunctionComponent<any> = ({ data }) => {
           return item.dt_txt.includes("21:00:00");
         })
         .map((i: any) => {
+          const temp = getFormattedTemp(unit, i.main.temp);
           return (
             <NavLink
               key={Math.random()}
@@ -26,7 +31,7 @@ const Footer: React.FunctionComponent<any> = ({ data }) => {
                       src={`${API_ICON_ULR}${i?.weather?.[0]?.icon}@2x.png`}
                     />
                   </div>
-                  <div>{Math.ceil(i.main.temp - 273.15) + "°C"}</div>
+                  <div>{temp}</div>
                 </div>
               </Style.CardDay>
             </NavLink>

@@ -51,7 +51,7 @@ const Weather: React.FunctionComponent<any> = () => {
     <Style.Content>
       <Style.CurrentCard>
         <h3>{data?.city?.name}</h3>
-        <h1>{Math.ceil(data?.list?.[0]?.main?.temp - 273.15) + "°C"}</h1>
+        <h1>{getFormattedTemp(unit, data?.list?.[0]?.main?.temp)}</h1>
         <img
           alt=""
           src={`${API_ICON_ULR}${data?.list?.[0]?.weather?.[0]?.icon}@2x.png`}
