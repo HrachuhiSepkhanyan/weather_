@@ -3,7 +3,7 @@ import { Style } from "./Footer.style";
 import { NavLink, Outlet } from "react-router-dom";
 import { API_ICON_ULR } from "../../API/API";
 import { getFormattedTemp } from "../../helpers";
-import { UnitContext } from "../context/unit";
+import { UnitContext } from "../../context/unit";
 
 const Footer: React.FunctionComponent<any> = ({ data }) => {
   const { unit } = useContext(UnitContext);

@@ -24,7 +24,7 @@ export const CityList: React.FC<CityListProps> = ({ cities }) => {
         return (
           <Style.CardCity key={Math.random()}>
             <NavLink
-              to={`/weather/city=${name}/date=${today}`}
+              to={`/weather/${name}/${today}`}
               key={Math.random()}
               style={{ textDecoration: "none", color: "black" }}
             >

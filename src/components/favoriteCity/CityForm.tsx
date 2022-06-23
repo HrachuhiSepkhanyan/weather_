@@ -20,6 +20,9 @@ const CityForm: React.FunctionComponent<any> = () => {
   console.log(lonCurrentCity);
 
   const add = (name: string): void => {
+    localStorage.setItem("city", JSON.stringify(city));
+    const storage: any = localStorage.getItem("city");
+    console.log(storage);
     const newCity: ICity = {
       name: name,
     };
