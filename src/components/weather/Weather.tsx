@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Style } from "./Weather.style";
-import { API_ICON_ULR, WeatherApi } from "../../API/API";
+import { API_ICON_ULR } from "../../API/API";
 import { useParams } from "react-router-dom";
 import useGeoLocation from "../../useGeoLocation";
 import { API_URL, API_KEY } from "../../API/API";
@@ -14,7 +14,7 @@ const mm = String(t.getMonth() + 1).padStart(2, "0");
 const yyyy = t.getFullYear();
 const today = String(yyyy + "-" + mm + "-" + dd);
 
-const Weather: React.FunctionComponent<any> = () => {
+const Weather: React.FC = () => {
   const { date } = useParams();
   const { city } = useParams();
   const { unit } = useContext(UnitContext);
@@ -33,6 +33,7 @@ const Weather: React.FunctionComponent<any> = () => {
         });
     }
   }, [lat, lon]);
+
   useEffect(() => {
     if (city) {
       fetch(`${API_URL}forecast?q=${city}&appid=${API_KEY}`)

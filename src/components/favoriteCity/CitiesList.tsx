@@ -19,8 +19,6 @@ export const CityList: React.FC<CityListProps> = ({ cities }) => {
     <Style.AllFavoriteCity>
       {cities.map((i: any) => {
         const name = i.name;
-        console.log(name);
-
         return (
           <Style.CardCity key={Math.random()}>
             <NavLink

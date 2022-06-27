@@ -22,3 +22,7 @@ export interface ILocation {
   lat: string;
   lon: string;
 }
+export interface ICoords {
+  lat: number;
+  lng: number;
+}

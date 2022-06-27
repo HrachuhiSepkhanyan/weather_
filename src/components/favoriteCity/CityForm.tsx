@@ -5,6 +5,7 @@ import { API_KEY } from "../../API/API";
 import { Style } from "./CityForm.styles";
 import { CityList } from "./CitiesList";
 import { ICity } from "../../interfaces";
+import { NavLink } from "react-router-dom";
 
 const API_URL = "https://api.openweathermap.org/data/2.5/forecast?q=";
 
@@ -20,17 +21,14 @@ const CityForm: React.FunctionComponent<any> = () => {
   console.log(lonCurrentCity);
 
   const add = (name: string): void => {
-    localStorage.setItem("city", JSON.stringify(city));
-    const storage: any = localStorage.getItem("city");
-    console.log(storage);
     const newCity: ICity = {
       name: name,
     };
     setCity((state: any) => [...state, newCity]);
   };
-
   const addCity = (event: any) => {
     event.preventDefault();
+
     if (objectCity) {
       add(inputValue);
       setInputValue("");
