@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import cities from "cities.json";
-import { useDispatch } from "react-redux";
 import { Style } from "./CityForm.styles";
 import { CityList } from "./CitiesList";
 import { ICity } from "../../interfaces";
@@ -8,7 +7,7 @@ import { ICity } from "../../interfaces";
 const CityForm: React.FunctionComponent<any> = () => {
   const [city, setCity] = useState<ICity[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
-  const dispatch = useDispatch();
+
   const add = (name: string): void => {
     const newCity: ICity = {
       name: name,
@@ -18,7 +17,6 @@ const CityForm: React.FunctionComponent<any> = () => {
 
   const addCity = (event: any) => {
     event.preventDefault();
-
     if (objectCity) {
       add(inputValue);
       setInputValue("");

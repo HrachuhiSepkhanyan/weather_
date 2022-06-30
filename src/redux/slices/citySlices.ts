@@ -5,27 +5,26 @@ interface ICityState {
 }
 
 const initialState: ICityState = {
-  cities: localStorage.getItem("cities")?.split(",") || [],
+  cities: [""],
 };
 
 export const citySlice = createSlice({
   name: "city",
   initialState: initialState,
   reducers: {
-    addCity: (state, action) => {
+    add: (state, action) => {
       const name: string = action.payload;
       state.cities.push(name);
-      localStorage.setItem("cities", state.cities.join(","));
+      console.log(name);
     },
-    removeCity: (state, action) => {
+    remove: (state, action) => {
       const i: number = action.payload;
       state.cities.splice(i, 1);
-      localStorage.setItem("cities", state.cities.join(","));
     },
   },
 });
 const { actions, reducer } = citySlice;
 
-export const { addCity, removeCity } = actions;
+export const { add, remove } = actions;
 
 export default reducer;

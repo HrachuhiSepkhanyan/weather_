@@ -25,7 +25,6 @@ const Weather: React.FC = () => {
 
   const dispatch = useDispatch();
   const { unit } = useContext(UnitContext);
-  console.log("Hrachuhi");
   const data = useSelector((state: any) => state.weatherData.data);
 
   const [coords, setCoords] = useState<ILocation>();
@@ -57,7 +56,6 @@ const Weather: React.FC = () => {
   // }, [city]);
   console.log(coords);
   console.log(data, "data from weather component");
-  console.log("yaaaaaaaaay");
   useEffect(() => {
     if (!city) {
       setCoords({
@@ -66,7 +64,7 @@ const Weather: React.FC = () => {
       });
     }
   }, [city]);
-
+  console.log("hrachuhi");
   useEffect(() => {
     dispatch(getWeather({ city, coords }) as any);
   }, [city, coords]);
@@ -77,7 +75,7 @@ const Weather: React.FC = () => {
         <h3>{data?.city?.name}</h3>
         <h1>{getFormattedTemp(unit, data?.list?.[0]?.main?.temp)}</h1>
         <img
-          alt="icon"
+          alt="icon_img"
           src={`${API_ICON_ULR}${data?.list?.[0]?.weather?.[0]?.icon}@2x.png`}
         />
         <h4>{data?.list?.[0]?.weather?.[0]?.main}</h4>
