@@ -30,8 +30,6 @@ const Weather: React.FC = () => {
   const lat = +JSON.stringify(location?.coordinates?.lat);
   const lon = +JSON.stringify(location?.coordinates?.lon);
 
-  console.log(coords);
-
   useEffect(() => {
     if (!city) {
       setCoords({
@@ -44,6 +42,7 @@ const Weather: React.FC = () => {
   useEffect(() => {
     dispatch(getWeather({ city, coords }) as any);
   }, [city, coords]);
+  console.log(data, "data from weather component");
 
   return (
     <Style.Content>

@@ -14,7 +14,6 @@ const CityForm: React.FunctionComponent<any> = () => {
     };
     setCity((state: any) => [...state, newCity]);
   };
-
   const addCity = (event: any) => {
     event.preventDefault();
     if (objectCity) {
@@ -24,11 +23,9 @@ const CityForm: React.FunctionComponent<any> = () => {
       alert("City is not defined");
     }
   };
-
   const objectCity: any = (cities as ICity[]).find((item: ICity) => {
     return item.name === inputValue;
   });
-
   const name = () => {
     if (objectCity !== undefined) {
       return objectCity.name;
