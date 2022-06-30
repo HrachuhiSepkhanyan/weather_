@@ -1,31 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface ICityState {
-  names: string[];
+  cities: string[];
 }
 
 const initialState: ICityState = {
-  names: localStorage.getItem("cities")?.split(",") || [],
+  cities: localStorage.getItem("cities")?.split(",") || [],
 };
 
 export const citySlice = createSlice({
   name: "city",
-  initialState,
+  initialState: initialState,
   reducers: {
     addCity: (state, action) => {
       const name: string = action.payload;
-
-      state.names.push(name);
-      localStorage.setItem("cities", state.names.join(","));
+      state.cities.push(name);
+      localStorage.setItem("cities", state.cities.join(","));
     },
     removeCity: (state, action) => {
-      const index: number = action.payload;
-
-      state.names.splice(index, 1);
-      localStorage.setItem("cities", state.names.join(","));
+      const i: number = action.payload;
+      state.cities.splice(i, 1);
+      localStorage.setItem("cities", state.cities.join(","));
     },
   },
 });
-export const { addCity, removeCity } = citySlice.actions;
+const { actions, reducer } = citySlice;
 
-export default citySlice.reducer;
+export const { addCity, removeCity } = actions;
+
+export default reducer;

@@ -1,20 +1,20 @@
 import axios from "axios";
-
+import { ILocation } from "../interfaces";
 export const API_URL = "https://api.openweathermap.org/data/2.5/";
-export const API_KEY = "cac27a5feb2e69fa2bbb874bae11f064";
+export const API_KEY = "405110063480fa01dfcf5b3aad2080e2";
 export const API_ICON_ULR = `http://openweathermap.org/img/wn/`;
 
 const api = axios.create({
-  baseURL: "https://api.openweathermap.org/data/2.5/",
+  baseURL: API_URL,
 });
 
 export const WeatherApi = {
   getWeatherByCity(city: string) {
     return api.get(`forecast?q=${city}&appid=${API_KEY}`);
   },
-  getWeatherByCoords(location: any) {
+  getWeatherByLocation(coords: ILocation) {
     return api.get(
-      `forecast?lat=${location.lat}&lon=${location.lng}&appid=${API_KEY}`
+      `forecast?lat=${coords.lat}&lon=${coords.lon}&appid=${API_KEY}`
     );
   },
 };

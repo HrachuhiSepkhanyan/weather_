@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import weatherDataReducer from "./slices/weatherDataSlices";
 import cityReducer from "./slices/citySlices";
+import thunk from "redux-thunk";
 
 export const rootReducer = combineReducers({
   city: cityReducer,
@@ -9,6 +10,7 @@ export const rootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: rootReducer,
+  middleware: [thunk],
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

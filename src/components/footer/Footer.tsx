@@ -7,7 +7,6 @@ import { UnitContext } from "../../context/unit";
 
 const Footer: React.FunctionComponent<any> = ({ data }) => {
   const { unit } = useContext(UnitContext);
-
   return (
     <Style.CardDayContainer>
       {data?.list
