@@ -1,10 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface ICityState {
-  cities: string[];
-}
-
-const initialState: ICityState = {
+const initialState = {
   cities: [""],
 };
 
@@ -24,7 +20,5 @@ export const citySlice = createSlice({
   },
 });
 const { actions, reducer } = citySlice;
-
 export const { add, remove } = actions;
-
 export default reducer;

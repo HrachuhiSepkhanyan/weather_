@@ -26,36 +26,12 @@ const Weather: React.FC = () => {
   const dispatch = useDispatch();
   const { unit } = useContext(UnitContext);
   const data = useSelector((state: any) => state.weatherData.data);
-
   const [coords, setCoords] = useState<ILocation>();
-
   const lat = +JSON.stringify(location?.coordinates?.lat);
   const lon = +JSON.stringify(location?.coordinates?.lon);
-  // const [data, setData] = useState<any>();
-  // useEffect(() => {
-  //   if (!city) {
-  //     setCoords({
-  //       lat: lat,
-  //       lon: lon,
-  //     });
-  //     fetch(`${API_URL}forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`)
-  //       .then((response) => response.json())
-  //       .then((results) => {
-  //         setData(results);
-  //       });
-  //   }
-  // }, [lat, lon]);
-  // useEffect(() => {
-  //   if (city) {
-  //     fetch(`${API_URL}forecast?q=${city}&appid=${API_KEY}`)
-  //       .then((response) => response.json())
-  //       .then((results) => {
-  //         setData(results);
-  //       });
-  //   }
-  // }, [city]);
+
   console.log(coords);
-  console.log(data, "data from weather component");
+
   useEffect(() => {
     if (!city) {
       setCoords({
@@ -64,7 +40,7 @@ const Weather: React.FC = () => {
       });
     }
   }, [city]);
-  console.log("hrachuhi");
+
   useEffect(() => {
     dispatch(getWeather({ city, coords }) as any);
   }, [city, coords]);

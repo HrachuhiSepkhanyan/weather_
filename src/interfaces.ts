@@ -22,3 +22,6 @@ export interface ILocation {
   lat: number;
   lon: number;
 }
+export interface ICityState {
+  cities: string[];
+}

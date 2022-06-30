@@ -13,7 +13,6 @@ export interface IGetWeather {
       temp: number;
     };
     weather: {
-      info: string;
       icon: string;
     }[];
   }[];
