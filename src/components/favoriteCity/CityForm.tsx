@@ -14,7 +14,7 @@ const CityForm: React.FunctionComponent<any> = () => {
     };
     setCity((state: any) => [...state, newCity]);
   };
-  const addCity = (event: any) => {
+  const addCity = (event: any): void => {
     event.preventDefault();
     if (objectCity) {
       add(inputValue);
@@ -31,9 +31,6 @@ const CityForm: React.FunctionComponent<any> = () => {
       return objectCity.name;
     }
   };
-  const favoriteCityName = name();
-  console.log(favoriteCityName);
-
   return (
     <Style.Container>
       <Style.CityFom>

@@ -1,10 +1,8 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import weatherDataReducer from "./slices/weatherDataSlices";
-import cityReducer from "./slices/citySlices";
 import thunk from "redux-thunk";
 
 export const rootReducer = combineReducers({
-  city: cityReducer,
   weatherData: weatherDataReducer,
 });
 

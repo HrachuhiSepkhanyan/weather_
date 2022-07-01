@@ -16,20 +16,27 @@ const dd = String(t.getDate()).padStart(2, "0");
 const mm = String(t.getMonth() + 1).padStart(2, "0");
 const yyyy = t.getFullYear();
 const today = String(yyyy + "-" + mm + "-" + dd);
+
 console.log(today);
 
 const Weather: React.FC = () => {
   const location = useGeoLocation();
+  const [coords, setCoords] = useState<ILocation>();
+  const { unit } = useContext(UnitContext);
+  const dispatch = useDispatch();
   const { date } = useParams();
   const { city } = useParams();
-
-  const dispatch = useDispatch();
-  const { unit } = useContext(UnitContext);
   const data = useSelector((state: any) => state.weatherData.data);
-  const [coords, setCoords] = useState<ILocation>();
   const lat = +JSON.stringify(location?.coordinates?.lat);
   const lon = +JSON.stringify(location?.coordinates?.lon);
-
+  useEffect(() => {
+    if (lat && lon) {
+      setCoords({
+        lat: lat,
+        lon: lon,
+      });
+    }
+  }, [lat, lon]);
   useEffect(() => {
     if (!city) {
       setCoords({
@@ -42,7 +49,6 @@ const Weather: React.FC = () => {
   useEffect(() => {
     dispatch(getWeather({ city, coords }) as any);
   }, [city, coords]);
-  console.log(data, "data from weather component");
 
   return (
     <Style.Content>

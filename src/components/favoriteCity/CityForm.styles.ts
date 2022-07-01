@@ -47,7 +47,6 @@ const CardCity = styled.div`
   cursor: pointer;
   :hover {
     background-color: #ccc;
-
     box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
   }
   & > img {
