@@ -26,11 +26,7 @@ const CityForm: React.FunctionComponent<any> = () => {
   const objectCity: any = (cities as ICity[]).find((item: ICity) => {
     return item.name === inputValue;
   });
-  const name = () => {
-    if (objectCity !== undefined) {
-      return objectCity.name;
-    }
-  };
+
   return (
     <Style.Container>
       <Style.CityFom>
@@ -42,7 +38,7 @@ const CityForm: React.FunctionComponent<any> = () => {
             id="name"
             onChange={(e) => setInputValue(e.target.value)}
           />
-          <Style.Add onClick={(e) => addCity(e)}>Add City +</Style.Add>
+          <Style.Add onClick={addCity}>Add City +</Style.Add>
         </Style.Form>
       </Style.CityFom>
 
