@@ -42,7 +42,7 @@ const CityForm: React.FunctionComponent<any> = () => {
             id="name"
             onChange={(e) => setInputValue(e.target.value)}
           />
-          <Style.Add onClick={(e) => addCity(e)}>Add City +</Style.Add>
+          <Style.Add onClick={addCity}>Add City +</Style.Add>
         </Style.Form>
       </Style.CityFom>
 
