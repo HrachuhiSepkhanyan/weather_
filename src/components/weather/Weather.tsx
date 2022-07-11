@@ -37,6 +37,7 @@ const Weather: React.FC = () => {
       });
     }
   }, [lat, lon]);
+
   useEffect(() => {
     if (!city) {
       setCoords({
