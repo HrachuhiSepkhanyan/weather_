@@ -16,23 +16,20 @@ const today = String(yyyy + "-" + mm + "-" + dd);
 export const CityList: React.FC<CityListProps> = ({ cities }) => {
   return (
     <Style.AllFavoriteCity>
-      {cities.map((i: any) => {
-        const name = i.name;
-        return (
-          <Style.CardCity key={Math.random()}>
-            <NavLink
-              to={`/weather/${name}/${today}`}
-              key={Math.random()}
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              {i.name}
-            </NavLink>
-            <button>
-              <img src={del} alt="delete"></img>
-            </button>
-          </Style.CardCity>
-        );
-      })}
+      {cities.map((city) => (
+        <Style.CardCity key={Math.random()}>
+          <NavLink
+            to={`/weather/${city.name}/${today}`}
+            key={Math.random()}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            {city.name}
+          </NavLink>
+          <button>
+            <img src={del} alt="delete"></img>
+          </button>
+        </Style.CardCity>
+      ))}
     </Style.AllFavoriteCity>
   );
 };

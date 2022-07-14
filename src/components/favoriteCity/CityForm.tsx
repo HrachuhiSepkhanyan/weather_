@@ -12,9 +12,9 @@ const CityForm: React.FunctionComponent<any> = () => {
     const newCity: ICity = {
       name: name,
     };
-    setCity((state: any) => [...state, newCity]);
+    setCity((state) => [...state, newCity]);
   };
-  const addCity = (event: any): void => {
+  const addCity = (event: React.MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
     if (objectCity) {
       add(inputValue);

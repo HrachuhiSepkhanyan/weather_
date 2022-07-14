@@ -26,7 +26,7 @@ const Weather: React.FC = () => {
   const dispatch = useDispatch();
   const { date } = useParams();
   const { city } = useParams();
-  const data = useSelector((state: any) => state.weatherData.data);
+  const data = useSelector((state) => state.weatherData.data);
   const lat = +JSON.stringify(location?.coordinates?.lat);
   const lon = +JSON.stringify(location?.coordinates?.lon);
   useEffect(() => {
@@ -48,7 +48,7 @@ const Weather: React.FC = () => {
   }, [city]);
 
   useEffect(() => {
-    dispatch(getWeather({ city, coords }) as any);
+    dispatch(getWeather({ city, coords }));
   }, [city, coords]);
 
   return (
@@ -64,10 +64,10 @@ const Weather: React.FC = () => {
       </Style.CurrentCard>
       <Style.WeatherHour>
         {data?.list
-          ?.filter((item: any) => {
+          ?.filter((item) => {
             return item.dt_txt.includes(date);
           })
-          .map((item: any) => {
+          .map((item) => {
             const temp = getFormattedTemp(unit, item.main.temp);
             return (
               <Style.WeatherHourItem key={Math.random()}>

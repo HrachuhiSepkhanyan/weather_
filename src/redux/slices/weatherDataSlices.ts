@@ -30,21 +30,9 @@ export const getWeather = createAsyncThunk(
     if (coords) {
       const result = await WeatherApi.getWeatherByLocation(coords);
       return result;
-      // .then((response: any) => {
-      //   return response;
-      // })
-      // .then((result: any) => {
-      //   return result;
-      // });
     } else if (city) {
       const result = await WeatherApi.getWeatherByCity(city);
       return result;
-      // .then((response: any) => {
-      //   return response;
-      // })
-      // .then((result: any) => {
-      //   return result;
-      // });
     }
   }
 );
