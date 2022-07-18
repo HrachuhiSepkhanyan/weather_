@@ -19,6 +19,27 @@ const today = String(yyyy + "-" + mm + "-" + dd);
 
 console.log(today);
 
+const d = new Date();
+let hour = d.getHours();
+
+if (0 < hour && hour < 3) {
+  hour = 0;
+} else if (3 < hour && hour < 6) {
+  hour = 3;
+} else if (6 < hour && hour < 9) {
+  hour = 6;
+} else if (9 < hour && hour < 12) {
+  hour = 9;
+} else if (12 < hour && hour < 15) {
+  hour = 12;
+} else if (15 < hour && hour < 18) {
+  hour = 15;
+} else if (18 < hour && hour < 21) {
+  hour = 18;
+} else if (hour === 21) {
+  hour = 21;
+}
+
 const Weather: React.FC = () => {
   const location = useGeoLocation();
   const [coords, setCoords] = useState<ILocation>();
@@ -26,9 +47,10 @@ const Weather: React.FC = () => {
   const dispatch = useDispatch();
   const { date } = useParams();
   const { city } = useParams();
-  const data = useSelector((state) => state.weatherData.data);
+  const data = useSelector((state: any) => state.weatherData.data);
   const lat = +JSON.stringify(location?.coordinates?.lat);
   const lon = +JSON.stringify(location?.coordinates?.lon);
+
   useEffect(() => {
     if (lat && lon) {
       setCoords({
@@ -50,6 +72,7 @@ const Weather: React.FC = () => {
   useEffect(() => {
     dispatch(getWeather({ city, coords }));
   }, [city, coords]);
+  console.log(hour);
 
   return (
     <Style.Content>
@@ -62,6 +85,7 @@ const Weather: React.FC = () => {
         />
         <h4>{data?.list?.[0]?.weather?.[0]?.main}</h4>
       </Style.CurrentCard>
+
       <Style.WeatherHour>
         {data?.list
           ?.filter((item) => {
@@ -83,7 +107,7 @@ const Weather: React.FC = () => {
             );
           })}
       </Style.WeatherHour>
-      <Footer data={data} city={city} />
+      <Footer data={data} city={city} hour={hour} />
     </Style.Content>
   );
 };
