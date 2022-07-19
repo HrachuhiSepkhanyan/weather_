@@ -5,7 +5,7 @@ import { API_ICON_ULR } from "../../API/API";
 import { getFormattedTemp } from "../../helpers";
 import { UnitContext } from "../../context/unit";
 
-const Footer: React.FunctionComponent<any> = ({ data, hour }) => {
+const Footer: React.FC = ({ data, hour }) => {
   const { unit } = useContext(UnitContext);
   return (
     <Style.CardDayContainer>

@@ -4,7 +4,7 @@ import { Style } from "./CityForm.styles";
 import { CityList } from "./CitiesList";
 import { ICity } from "../../interfaces";
 
-const CityForm: React.FunctionComponent<any> = () => {
+const CityForm: React.FC = () => {
   const [city, setCity] = useState<ICity[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
 

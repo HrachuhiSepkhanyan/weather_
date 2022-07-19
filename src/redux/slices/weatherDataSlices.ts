@@ -24,7 +24,7 @@ export const getWeather = createAsyncThunk(
     city,
     coords,
   }: {
-    city: any | undefined;
+    city: String | undefined;
     coords?: ILocation | undefined;
   }) => {
     if (coords) {
@@ -58,6 +58,8 @@ export const weatherDataSlice = createSlice({
       .addCase(getWeather.fulfilled, (state, action) => {
         console.log(action, "redux");
         state.data = action.payload?.data;
+        console.log(state.data, "datay arjeq");
+        console.log(typeof state.data, "datayi type");
         state.isLoading = false;
       })
       .addCase(getWeather.rejected, (state, action) => {

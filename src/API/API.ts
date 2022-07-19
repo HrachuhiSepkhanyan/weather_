@@ -10,7 +10,7 @@ const api = axios.create({
 });
 
 export const WeatherApi = {
-  getWeatherByCity(city: string) {
+  getWeatherByCity(city: String) {
     return api.get(`forecast?q=${city}&appid=${API_KEY}`);
   },
   getWeatherByLocation(coords: ILocation) {
