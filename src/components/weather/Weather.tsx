@@ -108,7 +108,7 @@ const Weather: FC<PropsType> = () => {
             );
           })}
       </Style.WeatherHour>
-      <Footer data={data} city={city} hour={hour} />
+      <Footer data={data} hour={hour} />
     </Style.Content>
   );
 };

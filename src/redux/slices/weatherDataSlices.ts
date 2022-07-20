@@ -14,6 +14,7 @@ export interface IGetWeather {
     };
     weather: {
       icon: string;
+      main: String;
     }[];
   }[];
 }
@@ -56,7 +57,10 @@ export const weatherDataSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getWeather.fulfilled, (state, action) => {
+        console.log(action, "redux");
         state.data = action.payload?.data;
+        console.log(state.data, "data");
+        console.log(typeof state.data, "data type");
         state.isLoading = false;
       })
       .addCase(getWeather.rejected, (state, action) => {

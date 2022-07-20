@@ -16,7 +16,7 @@ const Footer: FC<PropsType> = ({ data, hour }) => {
   const hourToString = hour + "";
   return (
     <Style.CardDayContainer>
-      {data.list
+      {data?.list
         ?.filter((item) => {
           return item.dt_txt.includes(hourToString);
         })
