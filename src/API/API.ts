@@ -3,7 +3,7 @@ import { ILocation } from "../interfaces";
 export const API_ICON_ULR = `http://openweathermap.org/img/wn/`;
 
 const API_URL = "https://api.openweathermap.org/data/2.5/";
-const API_KEY = "405110063480fa01dfcf5b3aad2080e2";
+const API_KEY = "ff472b4a8f4582837f1eb31fa8d7d09e";
 
 const api = axios.create({
   baseURL: API_URL,

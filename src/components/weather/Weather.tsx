@@ -12,6 +12,7 @@ import { getWeather } from "../../redux/slices/weatherDataSlices";
 import { ILocation } from "../../interfaces";
 import { RootState } from "../../redux/store";
 import { AppDispatch } from "../../redux/store";
+import Loader from "../loading/Loading";
 const t = new Date();
 const dd = String(t.getDate()).padStart(2, "0");
 const mm = String(t.getMonth() + 1).padStart(2, "0");
@@ -40,8 +41,8 @@ if (0 < hour && hour < 3) {
 } else if (hour === 21) {
   hour = 21;
 }
-interface PropsType {}
-const Weather: FC<PropsType> = () => {
+
+const Weather: FC = () => {
   const location = useGeoLocation();
   const [coords, setCoords] = useState<ILocation>();
   const { unit } = useContext(UnitContext);
@@ -49,6 +50,10 @@ const Weather: FC<PropsType> = () => {
   const { date } = useParams();
   const { city } = useParams();
   const data = useSelector((state: RootState) => state.weatherData.data);
+  const showLoading = useSelector(
+    (state: RootState) => state.weatherData.showLoading
+  );
+  console.log(showLoading);
   const lat = +JSON.stringify(location?.coordinates?.lat);
   const lon = +JSON.stringify(location?.coordinates?.lon);
 
@@ -71,12 +76,14 @@ const Weather: FC<PropsType> = () => {
   }, [city]);
 
   useEffect(() => {
-    dispatch(getWeather({ city, coords }) as any);
+    dispatch(getWeather({ city, coords }));
   }, [city, coords]);
+
   console.log(hour);
   const dateToString = date + "";
   return (
     <Style.Content>
+      {showLoading === true ? <Loader /> : "Component"}
       <Style.CurrentCard>
         <h3>{data?.city?.name}</h3>
         <h1>{getFormattedTemp(unit, data?.list?.[0]?.main?.temp)}</h1>
@@ -86,7 +93,6 @@ const Weather: FC<PropsType> = () => {
         />
         <h4>{data?.list?.[0]?.weather?.[0]?.main}</h4>
       </Style.CurrentCard>
-
       <Style.WeatherHour>
         {data?.list
           ?.filter((item) => {

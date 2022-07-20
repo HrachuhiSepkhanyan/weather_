@@ -4,7 +4,6 @@ import Header from "./components/header/Header";
 import { UnitProvider } from "./context/unit";
 import { AppContainer } from "../src/App.styled";
 import Routing from "./Routing";
-
 export const UnitContext = React.createContext(undefined);
 
 const App: React.FunctionComponent = () => {

@@ -39,12 +39,12 @@ export const getWeather = createAsyncThunk(
 );
 export interface DataState {
   data: IGetWeather;
-  isLoading: boolean;
+  showLoading: boolean;
 }
 
 const initialState: DataState = {
   data: {},
-  isLoading: false,
+  showLoading: true,
 };
 
 export const weatherDataSlice = createSlice({
@@ -54,17 +54,14 @@ export const weatherDataSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getWeather.pending, (state) => {
-        state.isLoading = true;
+        state.showLoading = true;
       })
       .addCase(getWeather.fulfilled, (state, action) => {
-        console.log(action, "redux");
         state.data = action.payload?.data;
-        console.log(state.data, "data");
-        console.log(typeof state.data, "data type");
-        state.isLoading = false;
+        state.showLoading = false;
       })
       .addCase(getWeather.rejected, (state, action) => {
-        state.isLoading = false;
+        state.showLoading = false;
       });
   },
 });
