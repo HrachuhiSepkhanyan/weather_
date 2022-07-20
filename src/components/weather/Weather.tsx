@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Style } from "./Weather.style";
@@ -40,8 +40,8 @@ if (0 < hour && hour < 3) {
 } else if (hour === 21) {
   hour = 21;
 }
-
-const Weather: React.FC = () => {
+interface PropsType {}
+const Weather: FC<PropsType> = () => {
   const location = useGeoLocation();
   const [coords, setCoords] = useState<ILocation>();
   const { unit } = useContext(UnitContext);
