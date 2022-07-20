@@ -10,7 +10,8 @@ import { UnitContext } from "../../context/unit";
 import { getFormattedTemp } from "../../helpers/index";
 import { getWeather } from "../../redux/slices/weatherDataSlices";
 import { ILocation } from "../../interfaces";
-
+import { RootState } from "../../redux/store";
+import { AppDispatch } from "../../redux/store";
 const t = new Date();
 const dd = String(t.getDate()).padStart(2, "0");
 const mm = String(t.getMonth() + 1).padStart(2, "0");
@@ -44,10 +45,10 @@ const Weather: React.FC = () => {
   const location = useGeoLocation();
   const [coords, setCoords] = useState<ILocation>();
   const { unit } = useContext(UnitContext);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const { date } = useParams();
   const { city } = useParams();
-  const data = useSelector((state: Object) => state.weatherData.data);
+  const data = useSelector((state: RootState) => state.weatherData.data);
   const lat = +JSON.stringify(location?.coordinates?.lat);
   const lon = +JSON.stringify(location?.coordinates?.lon);
 
@@ -70,10 +71,10 @@ const Weather: React.FC = () => {
   }, [city]);
 
   useEffect(() => {
-    dispatch(getWeather({ city, coords }));
+    dispatch(getWeather({ city, coords }) as any);
   }, [city, coords]);
   console.log(hour);
-
+  const dateToString = date + "";
   return (
     <Style.Content>
       <Style.CurrentCard>
@@ -88,10 +89,10 @@ const Weather: React.FC = () => {
 
       <Style.WeatherHour>
         {data?.list
-          ?.filter((item: Object[]) => {
-            return item.dt_txt.includes(date);
+          ?.filter((item) => {
+            return item.dt_txt.includes(dateToString);
           })
-          .map((item: Object) => {
+          .map((item) => {
             const temp = getFormattedTemp(unit, item.main.temp);
             return (
               <Style.WeatherHourItem key={Math.random()}>

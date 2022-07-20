@@ -56,10 +56,7 @@ export const weatherDataSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getWeather.fulfilled, (state, action) => {
-        console.log(action, "redux");
         state.data = action.payload?.data;
-        console.log(state.data, "datay arjeq");
-        console.log(typeof state.data, "datayi type");
         state.isLoading = false;
       })
       .addCase(getWeather.rejected, (state, action) => {
