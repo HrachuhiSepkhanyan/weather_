@@ -83,7 +83,7 @@ const Weather: FC = () => {
   const dateToString = date + "";
   return (
     <Style.Content>
-      {showLoading === true ? <Loader /> : "Component"}
+      {showLoading === true ? <Loader /> : ""}
       <Style.CurrentCard>
         <h3>{data?.city?.name}</h3>
         <h1>{getFormattedTemp(unit, data?.list?.[0]?.main?.temp)}</h1>
