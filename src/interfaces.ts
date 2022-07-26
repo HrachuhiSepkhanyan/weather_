@@ -10,6 +10,7 @@ export interface IWeaderbydayProps {
 }
 export interface CityListProps {
   cities: ICity[];
+  onDelete(name: String): void;
 }
 
 export interface IStorage {

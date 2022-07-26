@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cities from "cities.json";
 import { Style } from "./CityForm.styles";
 import { CityList } from "./CitiesList";
 import { ICity } from "../../interfaces";
 
 const CityForm: React.FC = () => {
-  const [city, setCity] = useState<ICity[]>([]);
+  const [city, setCity] = useState<ICity[]>(getCity());
   const [inputValue, setInputValue] = useState<string>("");
 
   const add = (name: string): void => {
@@ -14,6 +14,25 @@ const CityForm: React.FC = () => {
     };
     setCity((state) => [...state, newCity]);
   };
+  const onDel = (key: String) => {
+    const remove = city.filter((elem) => {
+      return elem.name !== key;
+    });
+    setCity(remove);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("City", JSON.stringify(city));
+  }, [city]);
+
+  function getCity() {
+    const data = localStorage.getItem("City");
+    if (data) {
+      return JSON.parse(data);
+    } else {
+      return [];
+    }
+  }
   const addCity = (event: React.MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
     if (objectCity) {
@@ -26,7 +45,7 @@ const CityForm: React.FC = () => {
   const objectCity: any = (cities as ICity[]).find((item: ICity) => {
     return item.name === inputValue;
   });
-
+  console.log(city);
   return (
     <Style.Container>
       <Style.CityFom>
@@ -42,7 +61,7 @@ const CityForm: React.FC = () => {
         </Style.Form>
       </Style.CityFom>
 
-      <CityList cities={city} />
+      <CityList cities={city} onDelete={onDel} />
     </Style.Container>
   );
 };
