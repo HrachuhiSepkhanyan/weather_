@@ -14,6 +14,7 @@ export interface IGetWeather {
     };
     weather: {
       icon: string;
+      main: String;
     }[];
   }[];
 }
@@ -24,38 +25,26 @@ export const getWeather = createAsyncThunk(
     city,
     coords,
   }: {
-    city: any | undefined;
+    city: String | undefined;
     coords?: ILocation | undefined;
   }) => {
     if (coords) {
       const result = await WeatherApi.getWeatherByLocation(coords);
       return result;
-      // .then((response: any) => {
-      //   return response;
-      // })
-      // .then((result: any) => {
-      //   return result;
-      // });
     } else if (city) {
       const result = await WeatherApi.getWeatherByCity(city);
       return result;
-      // .then((response: any) => {
-      //   return response;
-      // })
-      // .then((result: any) => {
-      //   return result;
-      // });
     }
   }
 );
 export interface DataState {
   data: IGetWeather;
-  isLoading: boolean;
+  showLoading: boolean;
 }
 
 const initialState: DataState = {
   data: {},
-  isLoading: false,
+  showLoading: true,
 };
 
 export const weatherDataSlice = createSlice({
@@ -65,15 +54,14 @@ export const weatherDataSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getWeather.pending, (state) => {
-        state.isLoading = true;
+        state.showLoading = true;
       })
       .addCase(getWeather.fulfilled, (state, action) => {
-        console.log(action, "redux");
         state.data = action.payload?.data;
-        state.isLoading = false;
+        state.showLoading = false;
       })
       .addCase(getWeather.rejected, (state, action) => {
-        state.isLoading = false;
+        state.showLoading = false;
       });
   },
 });

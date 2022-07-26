@@ -1,17 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext, FC } from "react";
 import { Style } from "./Footer.style";
 import { NavLink, Outlet } from "react-router-dom";
 import { API_ICON_ULR } from "../../API/API";
 import { getFormattedTemp } from "../../helpers";
 import { UnitContext } from "../../context/unit";
+import { IGetWeather } from "../../redux/slices/weatherDataSlices";
 
+<<<<<<< HEAD
 const Footer: React.FC = ({ data }) => {
+=======
+interface PropsType {
+  data: IGetWeather;
+  hour: number;
+}
+
+const Footer: FC<PropsType> = ({ data, hour }) => {
+>>>>>>> main
   const { unit } = useContext(UnitContext);
+  const hourToString = hour + "";
   return (
     <Style.CardDayContainer>
       {data?.list
         ?.filter((item) => {
+<<<<<<< HEAD
           return item.dt_txt.includes("21:00:00");
+=======
+          return item.dt_txt.includes(hourToString);
+>>>>>>> main
         })
         .map((item) => {
           const temp = getFormattedTemp(unit, item.main.temp);

@@ -1,20 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cities from "cities.json";
 import { Style } from "./CityForm.styles";
 import { CityList } from "./CitiesList";
 import { ICity } from "../../interfaces";
 
-const CityForm: React.FunctionComponent<any> = () => {
-  const [city, setCity] = useState<ICity[]>([]);
+const CityForm: React.FC = () => {
+  const [city, setCity] = useState<ICity[]>(getCity());
   const [inputValue, setInputValue] = useState<string>("");
 
   const add = (name: string): void => {
     const newCity: ICity = {
       name: name,
     };
-    setCity((state: any) => [...state, newCity]);
+    setCity((state) => [...state, newCity]);
   };
-  const addCity = (event: any): void => {
+  const onDel = (key: String) => {
+    const remove = city.filter((elem) => {
+      return elem.name !== key;
+    });
+    setCity(remove);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("City", JSON.stringify(city));
+  }, [city]);
+
+  function getCity() {
+    const data = localStorage.getItem("City");
+    if (data) {
+      return JSON.parse(data);
+    } else {
+      return [];
+    }
+  }
+  const addCity = (event: React.MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
     if (objectCity) {
       add(inputValue);
@@ -26,11 +45,7 @@ const CityForm: React.FunctionComponent<any> = () => {
   const objectCity: any = (cities as ICity[]).find((item: ICity) => {
     return item.name === inputValue;
   });
-  const name = () => {
-    if (objectCity !== undefined) {
-      return objectCity.name;
-    }
-  };
+  console.log(city);
   return (
     <Style.Container>
       <Style.CityFom>
@@ -46,7 +61,7 @@ const CityForm: React.FunctionComponent<any> = () => {
         </Style.Form>
       </Style.CityFom>
 
-      <CityList cities={city} />
+      <CityList cities={city} onDelete={onDel} />
     </Style.Container>
   );
 };
