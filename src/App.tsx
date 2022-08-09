@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+<<<<<<< HEAD
+import { Route, Routes } from "react-router-dom";
 
-function App() {
+import "./App.styled.tsx";
+import Header from "./components/header/Header";
+import { UnitProvider } from "./context/unit";
+import CityForm from "../src/components/favoriteCity/CityForm";
+import Home from "./components/pages/home/HomePage";
+import Weather from "./components/weather/Weather";
+import { AppContainer } from "./App.styled";
+=======
+import "./App.styled.tsx";
+import Header from "./components/header/Header";
+import { UnitProvider } from "./context/unit";
+import { AppContainer } from "../src/App.styled";
+import Routing from "./Routing";
+>>>>>>> main
+export const UnitContext = React.createContext(undefined);
+
+const App: React.FunctionComponent = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UnitProvider>
+      <AppContainer>
+        <Header />
+<<<<<<< HEAD
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/:weather/:city/:date" element={<Weather />} />
+          <Route path="/favoritecity" element={<CityForm />} />
+        </Routes>
+=======
+        <Routing />
+>>>>>>> main
+      </AppContainer>
+    </UnitProvider>
   );
-}
+};
 
 export default App;
